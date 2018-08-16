@@ -1,7 +1,5 @@
 FROM ubuntu:xenial
 
-MAINTAINER Robin Smidsrød <robin@smidsrod.no>
-
 ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get -q -y update \

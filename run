@@ -1,5 +1,5 @@
 #!/bin/bash
 pushd $(dirname $0) >/dev/null
 data_dir="$(pwd)/data"
-docker run -ti --rm --net host -v "$data_dir":/data softway4iot/isc-dhcpd "$@"
+docker run -ti --rm --net host -v "$data_dir":/data sw4iot/isc-dhcpd "$@"
 popd >/dev/null

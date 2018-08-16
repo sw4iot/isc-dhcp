@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: sw4iot-dhcp
+  labels:
+    app: sw4iot-dhcp
+spec:
+  selector:
+    app: sw4iot-dhcp
+---
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: sw4iot-dhcp
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sw4iot-dhcp
+    spec:
+      containers:
+      - image: sw4iot/isc-dhcp
+        name: sw4iot-dhcp        
+        volumeMounts:
+        - mountPath: /data
+          name: dhcp-data
+      volumes:
+      - name: dhcp-data
+        hostPath:
+          path: ./data
+          type: Directory

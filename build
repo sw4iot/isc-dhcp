@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t softway4iot/isc-dhcpd "$@" $(dirname $0)
+docker build -t sw4iot/isc-dhcpd "$@" $(dirname $0)
