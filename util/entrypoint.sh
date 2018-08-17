@@ -26,7 +26,7 @@ init="/usr/bin/dumb-init"
 #     IFACE=" "
 # fi
 
-IFACE="eth0"
+IFACE="wlp3s2"
 
 if [ -n "$IFACE" ]; then
     # Run dhcpd for specified interface or all interfaces
