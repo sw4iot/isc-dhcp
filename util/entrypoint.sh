@@ -26,7 +26,7 @@ init="/usr/bin/dumb-init"
 #     IFACE=" "
 # fi
 
-IFACE="br-tenant1"
+IFACE="wlp3s2"
 
 if [ -n "$IFACE" ]; then
     # Run dhcpd for specified interface or all interfaces
