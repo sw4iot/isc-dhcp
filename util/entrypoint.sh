@@ -5,28 +5,28 @@ set -e
 
 init="/usr/bin/dumb-init"
 
-# # Single argument to command line is interface name
-# if [ $# -eq 1 -a -n "$1" ]; then
-#     # skip wait-for-interface behavior if found in path
-#     if ! which "$1" >/dev/null; then
-#         # loop until interface is found, or we give up
-#         NEXT_WAIT_TIME=1
-#         until [ -e "/sys/class/net/$1" ] || [ $NEXT_WAIT_TIME -eq 4 ]; do
-#             sleep $(( NEXT_WAIT_TIME++ ))
-#             echo "Waiting for interface '$1' to become available... ${NEXT_WAIT_TIME}"
-#         done
-#         if [ -e "/sys/class/net/$1" ]; then
-#             IFACE="$1"
-#         fi
-#     fi
-# fi
+# Single argument to command line is interface name
+if [ $# -eq 1 -a -n "$1" ]; then
+     # skip wait-for-interface behavior if found in path
+     if ! which "$1" >/dev/null; then
+         # loop until interface is found, or we give up
+         NEXT_WAIT_TIME=1
+         until [ -e "/sys/class/net/$1" ] || [ $NEXT_WAIT_TIME -eq 30 ]; do
+             sleep $(( NEXT_WAIT_TIME++ ))
+             echo "Waiting for interface '$1' to become available... ${NEXT_WAIT_TIME}"
+         done
+         if [ -e "/sys/class/net/$1" ]; then
+             IFACE="$1"
+         fi
+     fi
+fi
 
-# # No arguments mean all interfaces
-# if [ -z "$1" ]; then
-#     IFACE=" "
-# fi
+ # No arguments mean all interfaces
+if [ -z "$1" ]; then
+    IFACE=" "
+fi
 
-IFACE="wlp3s2"
+IFACE="eth0"
 
 if [ -n "$IFACE" ]; then
     # Run dhcpd for specified interface or all interfaces
